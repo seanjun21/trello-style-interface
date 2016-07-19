@@ -3,27 +3,23 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var Card = function() {
-    var name = 'Card';
-    var description = 'Description';
+var Card = function( props ) {
+    console.log( props, 'PROPS' );
     return (
         <div className="card">
-            <div className="card-name">{name}</div>
-            <div className="card-description">
-                {description}
-            </div>
+            <div className="card-text">{props.text}</div>
         </div>
     );
 };
 
-var List = function() {
-    var card = [];
-    for ( var i = 0; i < 5; i++ ) {
-        card.push( <Card /> );
-    }
+var List = function( props ) {
+    props.cards = ["This is a text 1", "This is a text 2", "This is a text 3"];
+    var firstCard = props.cards[0];
+    <Card /> 
     return (
         <div className="list">
-            { card }
+            <div className="list-title">{props.title}</div>
+            <div className="card-list">{ cards }</div>
         </div>
     );
 };
