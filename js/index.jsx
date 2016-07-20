@@ -9,34 +9,34 @@ var Card = function( props ) {
   );
 };
 
-var Button = function( props ) {
-  return <button onClick={props.onClick}>{props.text}</button>;
-}
-
-var List = function( props ) {
-  getInitialState: function() {
-    return {
-      clicked: false
-    };
-  },
-  onAddClick: function() {
-    this.setState( {
-      clicked: true
-    } );
-  },
+var List = React.createClass {
+  
   render: function() {
     return (
       <div className="list">
         <div className="list-title">{ props.title }</div>
         <div>{ props.cards }</div>
-        <input type="text"/>
-        <Button />
+        <input type="text" onChange={ props.onAddInputChange }/>
+        <button onClick={ props.onAddClick }></button>
       </div>
     );
   }
 };
 
 var Board = function() {
+    getInitialState: function() {
+    return {
+      clicked: false
+    };
+  },
+  onAddInputChange: function() {
+
+  },
+  onAddClick: function() {
+    this.setState( {
+      clicked: true
+    } );
+  },
   return (
     <div className="board">
       <div className="board-title">Board</div>
