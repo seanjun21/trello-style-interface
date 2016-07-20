@@ -9,13 +9,31 @@ var Card = function( props ) {
   );
 };
 
+var Button = function( props ) {
+  return <button onClick={props.onClick}>{props.text}</button>;
+}
+
 var List = function( props ) {
-  return (
-    <div className="list">
-      <div className="list-title">{ props.title }</div>
-      <div>{ props.cards }</div>
-    </div>
-  );
+  getInitialState: function() {
+    return {
+      clicked: false
+    };
+  },
+  onAddClick: function() {
+    this.setState( {
+      clicked: true
+    } );
+  },
+  render: function() {
+    return (
+      <div className="list">
+        <div className="list-title">{ props.title }</div>
+        <div>{ props.cards }</div>
+        <input type="text"/>
+        <Button />
+      </div>
+    );
+  }
 };
 
 var Board = function() {
@@ -25,20 +43,20 @@ var Board = function() {
       <div>
         {[
           <List title="List 1" cards={[ 
-            <Card text="Card 1"/>,
-            <Card text="Card 2"/>,
-            <Card text="Card 3"/>
-          ]}/>, 
+            <Card text="Card 1" />,
+            <Card text="Card 2" />,
+            <Card text="Card 3" />
+          ]} />,
           <List title="List 2" cards={[ 
-            <Card text="Card 1"/>,
-            <Card text="Card 2"/>,
-            <Card text="Card 3"/>
-          ]}/>,
+            <Card text="Card 1" />,
+            <Card text="Card 2" />,
+            <Card text="Card 3" />
+          ]} />,
           <List title="List 3" cards={[ 
-            <Card text="Card 1"/>,
-            <Card text="Card 2"/>,
-            <Card text="Card 3"/>
-          ]}/> 
+            <Card text="Card 1" />,
+            <Card text="Card 2" />,
+            <Card text="Card 3" />
+          ]} /> 
         ]}
       </div>
     </div>
