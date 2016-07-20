@@ -3,6 +3,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+/*A component is just a function that returns a React element*/
+/*Components can contain other React components*/
+
+// Takes a 'text' prop that contains the content of the card
 var Card = function( props ) {
     console.log( props, 'PROPS' );
     return (
@@ -12,30 +16,37 @@ var Card = function( props ) {
     );
 };
 
+// Takes a 'title' prop that contains the title of the list
+// Takes a 'cards' prop that contains the contents of the cards
 var List = function( props ) {
-    props.cards = ["This is a text 1", "This is a text 2", "This is a text 3"];
-    var firstCard = props.cards[0];
-    <Card /> 
     return (
         <div className="list">
             <div className="list-title">{props.title}</div>
-            <div className="card-list">{ cards }</div>
+            <Card text="Content 1" />
+            <Card text="Content 2" />
+            <Card text="Content 3" />
+            <Card text="Content 4" />
         </div>
     );
 };
 
-var Board = function() {
-    var list = [];
-    for ( var i = 0; i < 5; i++ ) {
-        list.push( <List /> );
+// Takes a 'title' prop that contains the title of the board
+// Takes a 'lists' prop that contains an array of the titles of the boards lists
+var Board = function( props ) {
+    var listTitles = [];
+    for (var i = 0; i < listTitles.length; i++) {
+        listTitles.push(<List />)
     }
     return (
-        <div className="board">
-            { list }
+        <div className="board-div">
+            <div className="board-title">{props.title}</div>
+            <List title="List 1" />
+            <List title="List 2" />
+            <List title="List 3" />
         </div>
     );
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-    ReactDOM.render(<Board />, document.getElementById('app'));
+    ReactDOM.render(<Board title="Board 1" />, document.getElementById('app'));
 });
