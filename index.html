@@ -3,44 +3,52 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document
-    </title>
+    <title>Trello Style Interface</title>
 </head>
 
 <body>
     <style>
+    html {
+        background-color: dodgerblue;
+    }
+    
     .card {
+        background-color: white;
         width: 200px;
-        text-align: center;
-        border: 1px solid black;
+        text-align: left;
+        border-radius: 5px;
         padding: 10px;
         margin: 10px;
         display: inline-block;
     }
     
-    .card-name {
-        font-weight: bold;
-    }
-    /*    .card-img {
-        display: block;
-        max-width: 128px;
-        max-height: 128px;
-        margin: 10px auto;
-    }*/
-    
     .list {
-        border: 1px solid black;
-        max-width: 65%;
+        background-color: lightgray;
+        max-width: 15%;
+        border-radius: 10px;
+        padding: 1.5rem 0;
+        margin: 1rem;
+        display: inline-block;
+    }
+    
+    .list-title {
+        font-size: 1.2rem;
+    }
+    
+    .board {
         margin: 0 auto;
         text-align: center;
     }
     
-    .highlight {
-        background-color: yellow;
+    .board-title {
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 3rem 0;
     }
     </style>
     <div id="app"></div>
-    <script type="text/javascript" src="trello-style-interface.1.0.0.js"></script>
+    <script src="trello-style-interface.1.0.0.js"></script>
 </body>
 
 </html>
