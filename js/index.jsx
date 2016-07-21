@@ -36,10 +36,14 @@ var ListContainer = React.createClass( {
     } );
   },
 
-  onAddClick: function(props) {
-//    this.state.cards.push( this.state.value )
-    this.setState({cards: this.state.cards.push(<Card text={ this.state.text } />)});
+  onAddClick: function() {
+    this.state.cards.push( <Card text={this.state.text} /> )
+    console.log(this.state.text);
+    this.setState( {
+      cards: this.state.cards
+    } );
     console.log( this.state );
+    console.log( this.state.cards );
   },
 
   render: function() {
