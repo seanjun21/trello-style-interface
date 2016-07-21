@@ -10,7 +10,7 @@ var Board = function() {
       <div className="board-title">Board</div>
       <div>
         {[
-            <ListContainer title="Sean's iPhone from craigslist" cards={[
+            <ListContainer title="List" cards={[
             <Card text="Card 1" />,
             <Card text="Card 2" />,
             <Card text="Card 3" />
@@ -29,18 +29,19 @@ var ListContainer = React.createClass( {
       cards: []
     }
   },
+
   onAddInputChange: function( event ) {
     this.setState( {
-      value: event.target.value
+      text: event.target.value
     } );
   },
-  onAddClick: function() {
-    this.state.cards.push( this.state.value )
-    this.setState( {
-      cards: this.state.cards
-    } );
+
+  onAddClick: function(props) {
+//    this.state.cards.push( this.state.value )
+    this.setState({cards: this.state.cards.push(<Card text={ this.state.text } />)});
     console.log( this.state );
   },
+
   render: function() {
     return (
       <List title={this.props.title} cards={this.props.cards} onAddClick={this.onAddClick} onAddInputChange={this.onAddInputChange} />
