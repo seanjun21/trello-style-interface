@@ -4,18 +4,11 @@ var React = require( 'react' );
 var ReactDOM = require( 'react-dom' );
 
 var Board = function() {
-
   return (
     <div className="board">
       <div className="board-title">Board</div>
       <div>
-        {[
-            <ListContainer title="Sean's iPhone from craigslist" cards={[
-            <Card text="Card 1" />,
-            <Card text="Card 2" />,
-            <Card text="Card 3" />
-          ]} />
-        ]}
+        <ListContainer title="Sean's iPhone from craigslist" />
       </div>
     </div>
   )
@@ -31,19 +24,22 @@ var ListContainer = React.createClass( {
   },
   onAddInputChange: function( event ) {
     this.setState( {
-      value: event.target.value
+      text: event.target.value
     } );
   },
   onAddClick: function() {
-    this.state.cards.push( this.state.value )
+    // event.preventDefault();
+    var cardsList = this.state.cards;
+    cardsList.push( <Card text={ this.state.text } /> );
+    console.log( cardsList );
     this.setState( {
-      cards: this.state.cards
+      cards: cardsList,
+      text: ''
     } );
-    console.log( this.state );
   },
   render: function() {
     return (
-      <List title={this.props.title} cards={this.props.cards} onAddClick={this.onAddClick} onAddInputChange={this.onAddInputChange} />
+      <List title={this.props.title} text={this.state.text} cards={this.state.cards} onAddInputChange={this.onAddInputChange} onAddClick={this.onAddClick} />
     )
   }
 } );
@@ -54,11 +50,11 @@ var List = React.createClass( {
   render: function() {
     return (
       <div className="list">
-                <div className="list-title">{ this.props.title }</div>
-                <div>{ this.props.cards }</div>
-                <input type="text" onChange={ this.props.onAddInputChange }/>
-                <button onClick={ this.props.onAddClick }></button>
-            </div>
+        <div className="list-title">{ this.props.title }</div>
+        <div>{ this.props.cards }</div>
+        <input type="text" value={ this.props.text } onChange={ this.props.onAddInputChange }/>
+        <button onClick={ this.props.onAddClick }></button>
+      </div>
     );
   }
 } );
